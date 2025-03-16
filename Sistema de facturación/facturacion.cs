@@ -193,13 +193,17 @@ namespace Sistema_de_facturación
                 {
                     ctrl.Text = "";
                 }
-                this.Fecha.Focus();
+                Fecha.Focus();
 
-                Conexion.conectar();
-                SqlDataAdapter sda = new SqlDataAdapter("select isnull(max(cast(Cod_Cli as int)),0) +1 from Cliente", Conexion.conectar());
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                NoFactura.Text = dt.Rows[0][0].ToString();
+                using (SqlConnection conn = Conexion.Conectar())
+                {
+                    conn.Open();
+                    string query = "select isnull(max(cast(Cod_Cli as int)),0) +1 from Cliente";
+                    SqlDataAdapter sda = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    NoFactura.Text = dt.Rows[0][0].ToString();
+                }
             }
         }
     }

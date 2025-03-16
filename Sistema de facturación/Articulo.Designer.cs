@@ -382,6 +382,7 @@ namespace Sistema_de_facturación
             this.btnEditarA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnEditarA.TabIndex = 21;
             this.btnEditarA.TabStop = false;
+            this.btnEditarA.Click += new System.EventHandler(this.btnEditarA_Click);
             // 
             // btnEliminarA
             // 
@@ -393,6 +394,7 @@ namespace Sistema_de_facturación
             this.btnEliminarA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnEliminarA.TabIndex = 22;
             this.btnEliminarA.TabStop = false;
+            this.btnEliminarA.Click += new System.EventHandler(this.btnEliminarA_Click);
             // 
             // btnImprimirA
             // 

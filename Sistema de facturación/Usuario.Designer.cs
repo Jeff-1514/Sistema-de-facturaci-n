@@ -44,14 +44,12 @@ namespace Sistema_de_facturación
             this.ClaveU = new System.Windows.Forms.TextBox();
             this.ConClaveU = new System.Windows.Forms.TextBox();
             this.CelularU = new System.Windows.Forms.TextBox();
-            this.PrecioU = new System.Windows.Forms.TextBox();
             this.NombreU = new System.Windows.Forms.TextBox();
             this.CodigoU = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -110,6 +108,7 @@ namespace Sistema_de_facturación
             this.btnEliminarU.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnEliminarU.TabIndex = 47;
             this.btnEliminarU.TabStop = false;
+            this.btnEliminarU.Click += new System.EventHandler(this.btnEliminarU_Click);
             // 
             // btnEditarU
             // 
@@ -121,6 +120,7 @@ namespace Sistema_de_facturación
             this.btnEditarU.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnEditarU.TabIndex = 46;
             this.btnEditarU.TabStop = false;
+            this.btnEditarU.Click += new System.EventHandler(this.btnEditarU_Click);
             // 
             // btnGuardarU
             // 
@@ -178,7 +178,7 @@ namespace Sistema_de_facturación
             // CorreoU
             // 
             this.CorreoU.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CorreoU.Location = new System.Drawing.Point(261, 334);
+            this.CorreoU.Location = new System.Drawing.Point(261, 285);
             this.CorreoU.Name = "CorreoU";
             this.CorreoU.Size = new System.Drawing.Size(329, 36);
             this.CorreoU.TabIndex = 40;
@@ -196,7 +196,7 @@ namespace Sistema_de_facturación
             // ConClaveU
             // 
             this.ConClaveU.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConClaveU.Location = new System.Drawing.Point(261, 226);
+            this.ConClaveU.Location = new System.Drawing.Point(261, 177);
             this.ConClaveU.Name = "ConClaveU";
             this.ConClaveU.Size = new System.Drawing.Size(221, 36);
             this.ConClaveU.TabIndex = 38;
@@ -205,20 +205,11 @@ namespace Sistema_de_facturación
             // CelularU
             // 
             this.CelularU.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CelularU.Location = new System.Drawing.Point(261, 280);
+            this.CelularU.Location = new System.Drawing.Point(261, 231);
             this.CelularU.Name = "CelularU";
             this.CelularU.Size = new System.Drawing.Size(221, 36);
             this.CelularU.TabIndex = 39;
             this.CelularU.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxCelularU_KeyPress);
-            // 
-            // PrecioU
-            // 
-            this.PrecioU.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrecioU.Location = new System.Drawing.Point(261, 172);
-            this.PrecioU.Name = "PrecioU";
-            this.PrecioU.Size = new System.Drawing.Size(221, 36);
-            this.PrecioU.TabIndex = 37;
-            this.PrecioU.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxPrecioU_KeyPress);
             // 
             // NombreU
             // 
@@ -255,7 +246,7 @@ namespace Sistema_de_facturación
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.label7.Location = new System.Drawing.Point(148, 341);
+            this.label7.Location = new System.Drawing.Point(148, 292);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(95, 29);
             this.label7.TabIndex = 32;
@@ -267,7 +258,7 @@ namespace Sistema_de_facturación
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.label6.Location = new System.Drawing.Point(142, 287);
+            this.label6.Location = new System.Drawing.Point(143, 238);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 29);
             this.label6.TabIndex = 31;
@@ -279,23 +270,11 @@ namespace Sistema_de_facturación
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.label5.Location = new System.Drawing.Point(3, 233);
+            this.label5.Location = new System.Drawing.Point(3, 184);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(240, 29);
             this.label5.TabIndex = 30;
             this.label5.Text = "Confirmar Clave(*)";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.label4.Location = new System.Drawing.Point(123, 179);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 29);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "Precio(*)";
             // 
             // label3
             // 
@@ -303,7 +282,7 @@ namespace Sistema_de_facturación
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.label3.Location = new System.Drawing.Point(130, 125);
+            this.label3.Location = new System.Drawing.Point(131, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 29);
             this.label3.TabIndex = 28;
@@ -426,14 +405,12 @@ namespace Sistema_de_facturación
             this.Controls.Add(this.ClaveU);
             this.Controls.Add(this.ConClaveU);
             this.Controls.Add(this.CelularU);
-            this.Controls.Add(this.PrecioU);
             this.Controls.Add(this.NombreU);
             this.Controls.Add(this.CodigoU);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -474,14 +451,12 @@ namespace Sistema_de_facturación
         private System.Windows.Forms.TextBox ClaveU;
         private System.Windows.Forms.TextBox ConClaveU;
         private System.Windows.Forms.TextBox CelularU;
-        private System.Windows.Forms.TextBox PrecioU;
         private System.Windows.Forms.TextBox NombreU;
         private System.Windows.Forms.TextBox CodigoU;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

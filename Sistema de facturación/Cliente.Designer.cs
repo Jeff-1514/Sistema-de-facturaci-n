@@ -117,6 +117,7 @@ namespace Sistema_de_facturación
             this.btnEliminarC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnEliminarC.TabIndex = 47;
             this.btnEliminarC.TabStop = false;
+            this.btnEliminarC.Click += new System.EventHandler(this.btnEliminarC_Click);
             // 
             // btnEditarC
             // 
@@ -128,6 +129,7 @@ namespace Sistema_de_facturación
             this.btnEditarC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnEditarC.TabIndex = 46;
             this.btnEditarC.TabStop = false;
+            this.btnEditarC.Click += new System.EventHandler(this.btnEditarC_Click);
             // 
             // btnGuardarC
             // 
@@ -160,6 +162,7 @@ namespace Sistema_de_facturación
             this.BuscarC.Name = "BuscarC";
             this.BuscarC.Size = new System.Drawing.Size(331, 36);
             this.BuscarC.TabIndex = 42;
+            this.BuscarC.TextChanged += new System.EventHandler(this.BuscarC_TextChanged);
             this.BuscarC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxBuscarC_KeyPress);
             // 
             // btnBuscarC
@@ -236,7 +239,6 @@ namespace Sistema_de_facturación
             this.CodigoC.Name = "CodigoC";
             this.CodigoC.Size = new System.Drawing.Size(221, 36);
             this.CodigoC.TabIndex = 34;
-            this.CodigoC.TextChanged += new System.EventHandler(this.txtboxCodC_TextChanged);
             this.CodigoC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxCodC_KeyPress);
             // 
             // lblTotalC

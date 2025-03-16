@@ -9,11 +9,11 @@ namespace Sistema_de_facturación
 {
     class Conexion
     {
-        public static SqlConnection conectar ()
+        private static readonly string StringCon = "SERVER= JEFFERSON\\SQLEXPRESS; DATABASE= Facturacion; Integrated security= true";
+
+        public static SqlConnection Conectar()
         {
-            SqlConnection conect = new SqlConnection("SERVER= JEFFERSON\\SQLEXPRESS; DATABASE= Facturacion; Integrated security= true");
-            conect.Open();
-            return conect; 
+            return new SqlConnection(StringCon);
         }
     }
 }
