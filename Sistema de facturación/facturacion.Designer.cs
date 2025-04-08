@@ -29,7 +29,10 @@ namespace Sistema_de_facturación
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(facturacion));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSalirF = new System.Windows.Forms.PictureBox();
             this.btnImprimirF = new System.Windows.Forms.PictureBox();
             this.btnEliminarF = new System.Windows.Forms.PictureBox();
@@ -52,6 +55,13 @@ namespace Sistema_de_facturación
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.DgvFacturacion = new System.Windows.Forms.DataGridView();
+            this.codartDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desartDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preartDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.canartDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sub_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.temdetallefacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.facturacionDataSet = new Sistema_de_facturación.FacturacionDataSet();
             this.Subtotal1 = new System.Windows.Forms.TextBox();
             this.Precio = new System.Windows.Forms.TextBox();
             this.Cantidad = new System.Windows.Forms.TextBox();
@@ -73,6 +83,8 @@ namespace Sistema_de_facturación
             this.TotalPagar = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.TipoFactura = new System.Windows.Forms.ComboBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.temdetallefacturaTableAdapter = new Sistema_de_facturación.FacturacionDataSetTableAdapters.TemdetallefacturaTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.btnSalirF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnImprimirF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminarF)).BeginInit();
@@ -80,6 +92,8 @@ namespace Sistema_de_facturación
             ((System.ComponentModel.ISupportInitialize)(this.btnGuardarF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNuevoF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvFacturacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.temdetallefacturaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.facturacionDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalirF
@@ -104,6 +118,7 @@ namespace Sistema_de_facturación
             this.btnImprimirF.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnImprimirF.TabIndex = 73;
             this.btnImprimirF.TabStop = false;
+            this.btnImprimirF.Click += new System.EventHandler(this.btnImprimirF_Click);
             // 
             // btnEliminarF
             // 
@@ -137,6 +152,7 @@ namespace Sistema_de_facturación
             this.btnGuardarF.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnGuardarF.TabIndex = 70;
             this.btnGuardarF.TabStop = false;
+            this.btnGuardarF.Click += new System.EventHandler(this.btnGuardarF_Click);
             // 
             // btnNuevoF
             // 
@@ -166,6 +182,7 @@ namespace Sistema_de_facturación
             this.Articulo.Name = "Articulo";
             this.Articulo.Size = new System.Drawing.Size(221, 36);
             this.Articulo.TabIndex = 66;
+            this.Articulo.TextChanged += new System.EventHandler(this.Articulo_TextChanged);
             this.Articulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxArticulo_KeyPress);
             // 
             // Hora
@@ -312,14 +329,79 @@ namespace Sistema_de_facturación
             // 
             // DgvFacturacion
             // 
-            this.DgvFacturacion.BackgroundColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.DgvFacturacion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DgvFacturacion.AutoGenerateColumns = false;
+            this.DgvFacturacion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvFacturacion.BackgroundColor = System.Drawing.SystemColors.Info;
             this.DgvFacturacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvFacturacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codartDataGridViewTextBoxColumn,
+            this.desartDataGridViewTextBoxColumn,
+            this.preartDataGridViewTextBoxColumn,
+            this.canartDataGridViewTextBoxColumn,
+            this.sub_tot});
+            this.DgvFacturacion.DataSource = this.temdetallefacturaBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvFacturacion.DefaultCellStyle = dataGridViewCellStyle2;
             this.DgvFacturacion.Location = new System.Drawing.Point(608, 7);
             this.DgvFacturacion.Name = "DgvFacturacion";
             this.DgvFacturacion.RowHeadersWidth = 51;
+            this.DgvFacturacion.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.DgvFacturacion.RowTemplate.Height = 24;
             this.DgvFacturacion.Size = new System.Drawing.Size(522, 331);
             this.DgvFacturacion.TabIndex = 50;
+            // 
+            // codartDataGridViewTextBoxColumn
+            // 
+            this.codartDataGridViewTextBoxColumn.DataPropertyName = "cod_art";
+            this.codartDataGridViewTextBoxColumn.HeaderText = "Código";
+            this.codartDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.codartDataGridViewTextBoxColumn.Name = "codartDataGridViewTextBoxColumn";
+            // 
+            // desartDataGridViewTextBoxColumn
+            // 
+            this.desartDataGridViewTextBoxColumn.DataPropertyName = "des_art";
+            this.desartDataGridViewTextBoxColumn.HeaderText = "Descripción ";
+            this.desartDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.desartDataGridViewTextBoxColumn.Name = "desartDataGridViewTextBoxColumn";
+            // 
+            // preartDataGridViewTextBoxColumn
+            // 
+            this.preartDataGridViewTextBoxColumn.DataPropertyName = "pre_art";
+            this.preartDataGridViewTextBoxColumn.HeaderText = "Precio";
+            this.preartDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.preartDataGridViewTextBoxColumn.Name = "preartDataGridViewTextBoxColumn";
+            // 
+            // canartDataGridViewTextBoxColumn
+            // 
+            this.canartDataGridViewTextBoxColumn.DataPropertyName = "can_art";
+            this.canartDataGridViewTextBoxColumn.HeaderText = "Cantidad ";
+            this.canartDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.canartDataGridViewTextBoxColumn.Name = "canartDataGridViewTextBoxColumn";
+            // 
+            // sub_tot
+            // 
+            this.sub_tot.DataPropertyName = "sub_tot";
+            this.sub_tot.HeaderText = "Sub-Total";
+            this.sub_tot.MinimumWidth = 6;
+            this.sub_tot.Name = "sub_tot";
+            // 
+            // temdetallefacturaBindingSource
+            // 
+            this.temdetallefacturaBindingSource.DataMember = "Temdetallefactura";
+            this.temdetallefacturaBindingSource.DataSource = this.facturacionDataSet;
+            // 
+            // facturacionDataSet
+            // 
+            this.facturacionDataSet.DataSetName = "FacturacionDataSet";
+            this.facturacionDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // Subtotal1
             // 
@@ -428,6 +510,7 @@ namespace Sistema_de_facturación
             this.btnBuscarC.TabIndex = 91;
             this.btnBuscarC.Text = "Buscar";
             this.btnBuscarC.UseVisualStyleBackColor = true;
+            this.btnBuscarC.Click += new System.EventHandler(this.btnBuscarC_Click);
             // 
             // btnBuscarA
             // 
@@ -439,6 +522,7 @@ namespace Sistema_de_facturación
             this.btnBuscarA.TabIndex = 88;
             this.btnBuscarA.Text = "Buscar";
             this.btnBuscarA.UseVisualStyleBackColor = true;
+            this.btnBuscarA.Click += new System.EventHandler(this.btnBuscarA_Click);
             // 
             // btnEliA
             // 
@@ -534,11 +618,25 @@ namespace Sistema_de_facturación
             // 
             this.TipoFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.TipoFactura.FormattingEnabled = true;
+            this.TipoFactura.Items.AddRange(new object[] {
+            "Efectivo",
+            "Crédito",
+            "Tarjeta",
+            "Otros"});
             this.TipoFactura.Location = new System.Drawing.Point(218, 168);
             this.TipoFactura.Name = "TipoFactura";
             this.TipoFactura.Size = new System.Drawing.Size(221, 37);
             this.TipoFactura.TabIndex = 63;
             this.TipoFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbBoxTipo_KeyPress);
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // temdetallefacturaTableAdapter
+            // 
+            this.temdetallefacturaTableAdapter.ClearBeforeFill = true;
             // 
             // facturacion
             // 
@@ -603,6 +701,8 @@ namespace Sistema_de_facturación
             ((System.ComponentModel.ISupportInitialize)(this.btnGuardarF)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNuevoF)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvFacturacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.temdetallefacturaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.facturacionDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -622,7 +722,6 @@ namespace Sistema_de_facturación
         private System.Windows.Forms.TextBox Cliente;
         private System.Windows.Forms.TextBox Nombre;
         private System.Windows.Forms.TextBox Fecha;
-        private System.Windows.Forms.TextBox NoFactura;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -653,5 +752,15 @@ namespace Sistema_de_facturación
         private System.Windows.Forms.TextBox TotalPagar;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox TipoFactura;
+        private System.Windows.Forms.Timer timer;
+        private FacturacionDataSet facturacionDataSet;
+        private System.Windows.Forms.BindingSource temdetallefacturaBindingSource;
+        private FacturacionDataSetTableAdapters.TemdetallefacturaTableAdapter temdetallefacturaTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codartDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn desartDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preartDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn canartDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sub_tot;
+        public System.Windows.Forms.TextBox NoFactura;
     }
 }

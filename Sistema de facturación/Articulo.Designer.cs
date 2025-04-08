@@ -406,6 +406,7 @@ namespace Sistema_de_facturación
             this.btnImprimirA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnImprimirA.TabIndex = 23;
             this.btnImprimirA.TabStop = false;
+            this.btnImprimirA.Click += new System.EventHandler(this.btnImprimirA_Click);
             // 
             // btnSalirA
             // 

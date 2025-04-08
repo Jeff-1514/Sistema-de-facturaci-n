@@ -55,21 +55,21 @@ namespace Sistema_de_facturación
             this.lblNombreC = new System.Windows.Forms.Label();
             this.lblCodC = new System.Windows.Forms.Label();
             this.DgvCliente = new System.Windows.Forms.DataGridView();
+            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.facturacionDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ProvinciaC = new System.Windows.Forms.ComboBox();
+            this.ApellidoC = new System.Windows.Forms.TextBox();
+            this.lblApellido = new System.Windows.Forms.Label();
+            this.clienteBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.facturacionDataSet = new Sistema_de_facturación.FacturacionDataSet();
+            this.clienteBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.clienteTableAdapter = new Sistema_de_facturación.FacturacionDataSetTableAdapters.ClienteTableAdapter();
             this.codCliDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomCliDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apecliDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.secCliDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proCliDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.conCliDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.facturacionDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.facturacionDataSet = new Sistema_de_facturación.FacturacionDataSet();
-            this.ProvinciaC = new System.Windows.Forms.ComboBox();
-            this.ApellidoC = new System.Windows.Forms.TextBox();
-            this.lblApellido = new System.Windows.Forms.Label();
-            this.articuloBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.articuloTableAdapter = new Sistema_de_facturación.FacturacionDataSetTableAdapters.ArticuloTableAdapter();
-            this.clienteTableAdapter = new Sistema_de_facturación.FacturacionDataSetTableAdapters.ClienteTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.btnSalirC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnImprimirC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminarC)).BeginInit();
@@ -80,8 +80,9 @@ namespace Sistema_de_facturación
             ((System.ComponentModel.ISupportInitialize)(this.DgvCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.facturacionDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.facturacionDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.articuloBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalirC
@@ -106,6 +107,7 @@ namespace Sistema_de_facturación
             this.btnImprimirC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnImprimirC.TabIndex = 48;
             this.btnImprimirC.TabStop = false;
+            this.btnImprimirC.Click += new System.EventHandler(this.btnImprimirC_Click);
             // 
             // btnEliminarC
             // 
@@ -341,7 +343,7 @@ namespace Sistema_de_facturación
             // 
             this.DgvCliente.AllowUserToOrderColumns = true;
             this.DgvCliente.AutoGenerateColumns = false;
-            this.DgvCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.DgvCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvCliente.BackgroundColor = System.Drawing.SystemColors.Window;
             this.DgvCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -352,7 +354,7 @@ namespace Sistema_de_facturación
             this.secCliDataGridViewTextBoxColumn,
             this.proCliDataGridViewTextBoxColumn,
             this.conCliDataGridViewTextBoxColumn});
-            this.DgvCliente.DataSource = this.clienteBindingSource;
+            this.DgvCliente.DataSource = this.clienteBindingSource2;
             this.DgvCliente.Location = new System.Drawing.Point(478, 67);
             this.DgvCliente.Name = "DgvCliente";
             this.DgvCliente.RowHeadersWidth = 51;
@@ -360,68 +362,9 @@ namespace Sistema_de_facturación
             this.DgvCliente.Size = new System.Drawing.Size(705, 306);
             this.DgvCliente.TabIndex = 25;
             // 
-            // codCliDataGridViewTextBoxColumn
-            // 
-            this.codCliDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.codCliDataGridViewTextBoxColumn.DataPropertyName = "Cod_Cli";
-            this.codCliDataGridViewTextBoxColumn.HeaderText = "Codigo";
-            this.codCliDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.codCliDataGridViewTextBoxColumn.Name = "codCliDataGridViewTextBoxColumn";
-            // 
-            // nomCliDataGridViewTextBoxColumn
-            // 
-            this.nomCliDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomCliDataGridViewTextBoxColumn.DataPropertyName = "Nom_Cli";
-            this.nomCliDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nomCliDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nomCliDataGridViewTextBoxColumn.Name = "nomCliDataGridViewTextBoxColumn";
-            // 
-            // apecliDataGridViewTextBoxColumn
-            // 
-            this.apecliDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.apecliDataGridViewTextBoxColumn.DataPropertyName = "Ape_cli";
-            this.apecliDataGridViewTextBoxColumn.HeaderText = "Apellido";
-            this.apecliDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.apecliDataGridViewTextBoxColumn.Name = "apecliDataGridViewTextBoxColumn";
-            // 
-            // secCliDataGridViewTextBoxColumn
-            // 
-            this.secCliDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.secCliDataGridViewTextBoxColumn.DataPropertyName = "Sec_Cli";
-            this.secCliDataGridViewTextBoxColumn.HeaderText = "Sector";
-            this.secCliDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.secCliDataGridViewTextBoxColumn.Name = "secCliDataGridViewTextBoxColumn";
-            // 
-            // proCliDataGridViewTextBoxColumn
-            // 
-            this.proCliDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.proCliDataGridViewTextBoxColumn.DataPropertyName = "Pro_Cli";
-            this.proCliDataGridViewTextBoxColumn.HeaderText = "Provincia";
-            this.proCliDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.proCliDataGridViewTextBoxColumn.Name = "proCliDataGridViewTextBoxColumn";
-            // 
-            // conCliDataGridViewTextBoxColumn
-            // 
-            this.conCliDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.conCliDataGridViewTextBoxColumn.DataPropertyName = "Con_Cli";
-            this.conCliDataGridViewTextBoxColumn.HeaderText = "Contacto";
-            this.conCliDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.conCliDataGridViewTextBoxColumn.Name = "conCliDataGridViewTextBoxColumn";
-            // 
             // clienteBindingSource
             // 
-            this.clienteBindingSource.DataMember = "Cliente";
             this.clienteBindingSource.DataSource = this.facturacionDataSetBindingSource;
-            // 
-            // facturacionDataSetBindingSource
-            // 
-            this.facturacionDataSetBindingSource.DataSource = this.facturacionDataSet;
-            this.facturacionDataSetBindingSource.Position = 0;
-            // 
-            // facturacionDataSet
-            // 
-            this.facturacionDataSet.DataSetName = "FacturacionDataSet";
-            this.facturacionDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ProvinciaC
             // 
@@ -463,18 +406,61 @@ namespace Sistema_de_facturación
             this.lblApellido.Text = "Apellido";
             this.lblApellido.Click += new System.EventHandler(this.label1_Click);
             // 
-            // articuloBindingSource
+            // facturacionDataSet
             // 
-            this.articuloBindingSource.DataMember = "Articulo";
-            this.articuloBindingSource.DataSource = this.facturacionDataSetBindingSource;
+            this.facturacionDataSet.DataSetName = "FacturacionDataSet";
+            this.facturacionDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // articuloTableAdapter
+            // clienteBindingSource2
             // 
-            this.articuloTableAdapter.ClearBeforeFill = true;
+            this.clienteBindingSource2.DataMember = "Cliente";
+            this.clienteBindingSource2.DataSource = this.facturacionDataSet;
             // 
             // clienteTableAdapter
             // 
             this.clienteTableAdapter.ClearBeforeFill = true;
+            // 
+            // codCliDataGridViewTextBoxColumn
+            // 
+            this.codCliDataGridViewTextBoxColumn.DataPropertyName = "Cod_Cli";
+            this.codCliDataGridViewTextBoxColumn.HeaderText = "Código";
+            this.codCliDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.codCliDataGridViewTextBoxColumn.Name = "codCliDataGridViewTextBoxColumn";
+            // 
+            // nomCliDataGridViewTextBoxColumn
+            // 
+            this.nomCliDataGridViewTextBoxColumn.DataPropertyName = "Nom_Cli";
+            this.nomCliDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nomCliDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nomCliDataGridViewTextBoxColumn.Name = "nomCliDataGridViewTextBoxColumn";
+            // 
+            // apecliDataGridViewTextBoxColumn
+            // 
+            this.apecliDataGridViewTextBoxColumn.DataPropertyName = "Ape_cli";
+            this.apecliDataGridViewTextBoxColumn.HeaderText = "Apellido";
+            this.apecliDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.apecliDataGridViewTextBoxColumn.Name = "apecliDataGridViewTextBoxColumn";
+            // 
+            // secCliDataGridViewTextBoxColumn
+            // 
+            this.secCliDataGridViewTextBoxColumn.DataPropertyName = "Sec_Cli";
+            this.secCliDataGridViewTextBoxColumn.HeaderText = "Sector";
+            this.secCliDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.secCliDataGridViewTextBoxColumn.Name = "secCliDataGridViewTextBoxColumn";
+            // 
+            // proCliDataGridViewTextBoxColumn
+            // 
+            this.proCliDataGridViewTextBoxColumn.DataPropertyName = "Pro_Cli";
+            this.proCliDataGridViewTextBoxColumn.HeaderText = "Provincia";
+            this.proCliDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.proCliDataGridViewTextBoxColumn.Name = "proCliDataGridViewTextBoxColumn";
+            // 
+            // conCliDataGridViewTextBoxColumn
+            // 
+            this.conCliDataGridViewTextBoxColumn.DataPropertyName = "Con_Cli";
+            this.conCliDataGridViewTextBoxColumn.HeaderText = "Contacto";
+            this.conCliDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.conCliDataGridViewTextBoxColumn.Name = "conCliDataGridViewTextBoxColumn";
             // 
             // Cliente
             // 
@@ -525,8 +511,9 @@ namespace Sistema_de_facturación
             ((System.ComponentModel.ISupportInitialize)(this.DgvCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.facturacionDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.facturacionDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.articuloBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -561,11 +548,11 @@ namespace Sistema_de_facturación
         private System.Windows.Forms.ComboBox ProvinciaC;
         private System.Windows.Forms.TextBox ApellidoC;
         private System.Windows.Forms.Label lblApellido;
-        private FacturacionDataSet facturacionDataSet;
         private System.Windows.Forms.BindingSource facturacionDataSetBindingSource;
-        private System.Windows.Forms.BindingSource articuloBindingSource;
-        private FacturacionDataSetTableAdapters.ArticuloTableAdapter articuloTableAdapter;
         private System.Windows.Forms.BindingSource clienteBindingSource;
+        private System.Windows.Forms.BindingSource clienteBindingSource1;
+        private FacturacionDataSet facturacionDataSet;
+        private System.Windows.Forms.BindingSource clienteBindingSource2;
         private FacturacionDataSetTableAdapters.ClienteTableAdapter clienteTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn codCliDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomCliDataGridViewTextBoxColumn;

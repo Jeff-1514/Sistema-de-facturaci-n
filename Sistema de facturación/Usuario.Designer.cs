@@ -97,6 +97,7 @@ namespace Sistema_de_facturación
             this.btnImprimirU.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnImprimirU.TabIndex = 48;
             this.btnImprimirU.TabStop = false;
+            this.btnImprimirU.Click += new System.EventHandler(this.btnImprimirU_Click);
             // 
             // btnEliminarU
             // 

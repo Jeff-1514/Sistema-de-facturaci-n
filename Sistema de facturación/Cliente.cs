@@ -27,9 +27,6 @@ namespace Sistema_de_facturación
         {
             // TODO: esta línea de código carga datos en la tabla 'facturacionDataSet.Cliente' Puede moverla o quitarla según sea necesario.
             this.clienteTableAdapter.Fill(this.facturacionDataSet.Cliente);
-            // TODO: esta línea de código carga datos en la tabla 'facturacionDataSet.Articulo' Puede moverla o quitarla según sea necesario.
-            this.articuloTableAdapter.Fill(this.facturacionDataSet.Articulo);
-
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
@@ -340,6 +337,12 @@ namespace Sistema_de_facturación
                 }
 
             }
+        }
+
+        private void btnImprimirC_Click(object sender, EventArgs e)
+        {
+            RCC rcc = new RCC();
+            rcc.Show();
         }
     }
 }

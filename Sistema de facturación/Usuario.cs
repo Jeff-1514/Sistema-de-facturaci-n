@@ -305,5 +305,11 @@ namespace Sistema_de_facturación
             int total = int.Parse(DgvUsuario.RowCount.ToString());
             TotalU.Text = Convert.ToString(total - 1);
         }
+
+        private void btnImprimirU_Click(object sender, EventArgs e)
+        {
+            RCU rcu = new RCU();
+            rcu.Show();
+        }
     }
 }

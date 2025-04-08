@@ -246,6 +246,7 @@ namespace Sistema_de_facturación
                                 "VALUES (@Cod_Art,@Des_Art,@Cos_Art,@Pre_Art,@Exi_Art,@Can_Min)";
             using (SqlConnection conn = Conexion.Conectar())
             {
+                conn.Open();
                 using (SqlCommand cmd = new SqlCommand(insert, conn))
                 {
                     cmd.Parameters.AddWithValue("@Cod_Art", CodigoA.Text);
@@ -303,25 +304,28 @@ namespace Sistema_de_facturación
 
         private void btnEliminarA_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("¿Eliminar el registro?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (MessageBox.Show("¿Eliminar el registro?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                string eliminar = "DELETE FROM Articulo WHERE Cod_art = @Codigo";
+                using (SqlConnection conn = Conexion.Conectar())
                 {
-                    string eliminar = "DELETE FROM Articulo WHERE Cod_art = @Codigo";
-                    using (SqlConnection conn = Conexion.Conectar())
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(eliminar, conn))
                     {
-                        conn.Open();
-                        using (SqlCommand cmd = new SqlCommand(eliminar, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@Codigo", int.Parse(CodigoA.Text.Trim()));
-                            cmd.ExecuteNonQuery();
-                            DgvArticulos.DataSource = actualizararticulos();
-                        }
+                        cmd.Parameters.AddWithValue("@Codigo", int.Parse(CodigoA.Text.Trim()));
+                        cmd.ExecuteNonQuery();
+                        DgvArticulos.DataSource = actualizararticulos();
                     }
                 }
-                int total = int.Parse(DgvArticulos.RowCount.ToString());
-                TotalA.Text = Convert.ToString(total - 1);
             }
+            int total = int.Parse(DgvArticulos.RowCount.ToString());
+            TotalA.Text = Convert.ToString(total - 1);
+        }
+
+        private void btnImprimirA_Click(object sender, EventArgs e)
+        {
+            RCA rca = new RCA();
+            rca.Show();
         }
     }
 }
